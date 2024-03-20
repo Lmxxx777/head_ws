@@ -4,9 +4,9 @@ from launch_ros.actions import Node
 def generate_launch_description():
     return LaunchDescription([
         Node(
+            output='screen',
             package='speak',
-            namespace='speak',
-            executable='speak_node',
-            name='speak'
+            executable='speak',
+            name='speak',
         )
     ])

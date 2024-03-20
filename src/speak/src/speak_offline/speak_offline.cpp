@@ -1,4 +1,4 @@
-#include <speak_offline.h>
+#include <speak_offline/speak_offline.h>
 
 VoiceOffline::VoiceOffline(){
 	/* 用户登录 */
@@ -9,18 +9,13 @@ VoiceOffline::VoiceOffline(){
 	}
 }
 
-bool VoiceOffline::VoiceOfflineGenerator()
+int VoiceOffline::VoiceOfflineGenerator(const char* src_text, const char* des_path)
 {
 	/* 文本合成 */
 	printf("开始合成 ...\n");
-	ret = text_to_speech(text, filename, session_begin_params);
-	if (MSP_SUCCESS != ret)
-	{
-		printf("text_to_speech failed, error code: %d.\n", ret);
-		return false;
-	}
+	ret = text_to_speech(src_text, des_path, session_begin_params);
 	printf("合成完毕\n");
-    return true;
+    return ret;
 }
 
 /* 文本合成 */

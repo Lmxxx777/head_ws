@@ -32,7 +32,7 @@ typedef struct _wave_pcm_hdr
 } wave_pcm_hdr;
 
 /* 默认wav音频头部数据 */
-wave_pcm_hdr default_wav_hdr = 
+const wave_pcm_hdr default_wav_hdr = 
 {
 	{ 'R', 'I', 'F', 'F' },
 	0,
@@ -63,13 +63,11 @@ private:
 	* text_encoding: 合成文本编码格式
 	*
 	*/
-	const char* session_begin_params = "engine_type = purextts,voice_name=xiaoyan, text_encoding = UTF8, tts_res_path = fo|res/xtts/xiaoyan.jet;fo|res/xtts/common.jet, sample_rate = 16000, speed = 50, volume = 50, pitch = 50, rdn = 2";
-	const char* filename             = "tts_sample.wav"; //合成的语音文件名称
-	const char* text                 = "亲爱的用户，您好，这是一个语音合成示例，感谢您对科大讯飞语音技术的支持！科大讯飞是亚太地区最大的语音上市公司，股票代码：002230"; //合成文本    
+	const char* session_begin_params = "engine_type = purextts,voice_name=xiaoyan, text_encoding = UTF8, tts_res_path = fo|/home/lmx/head_ws/src/speak/bin/msc/res/xtts/xiaoyan.jet;fo|/home/lmx/head_ws/src/speak/bin/msc/res/xtts/common.jet, sample_rate = 16000, speed = 50, volume = 50, pitch = 50, rdn = 2";
 
     int text_to_speech(const char* src_text, const char* des_path, const char* params);
 public:
     VoiceOffline();
-    bool VoiceOfflineGenerator();
+    int VoiceOfflineGenerator(const char* src_text, const char* des_path);
     ~VoiceOffline();
 };
