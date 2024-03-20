@@ -5,7 +5,8 @@ def generate_launch_description():
    return LaunchDescription([
       Node(
          package='listen',
-         executable='listen_online',
-         name='listen_online'
+         executable='listen',
+         name='listen',
+         output='screen'
       ),
    ])

@@ -4,11 +4,12 @@
   <name>head_console</name>
   <version>0.0.0</version>
   <description>TODO: Package description</description>
-  <maintainer email="lmx@todo.todo">lmx</maintainer>
+  <maintainer email="2351006771@qq.com">lmx</maintainer>
   <license>TODO: License declaration</license>
 
   <depend>rclpy</depend>
   <depend>std_msgs</depend>
+  <exec_depend>chat_msgs</exec_depend>
 
   <test_depend>ament_copyright</test_depend>
   <test_depend>ament_flake8</test_depend>

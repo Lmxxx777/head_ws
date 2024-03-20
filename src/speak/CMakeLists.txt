@@ -1,12 +1,11 @@
+# 参照cyberdog_ros2的CMakeLists.txt修改
 cmake_minimum_required(VERSION 3.5)
 project(speak)
 
-# Default to C99
 if(NOT CMAKE_C_STANDARD)
   set(CMAKE_C_STANDARD 99)
 endif()
 
-# Default to C++14
 if(NOT CMAKE_CXX_STANDARD)
   set(CMAKE_CXX_STANDARD 14)
 endif()
@@ -15,17 +14,14 @@ if(CMAKE_COMPILER_IS_GNUCXX OR CMAKE_CXX_COMPILER_ID MATCHES "Clang")
   add_compile_options(-Wall -Wextra -Wpedantic)
 endif()
 
-set(DIR_INC ../include)
-set(DIR_BIN ../bin)
-set(DIR_LIB ../libs)
-
 set(LINUX64 ON)
 if(LINUX64)
-    set(LDFLAGS "-L${DIR_LIB}/x64")
+    set(LIB_DIR "libs/x64")
 else()
-    set(LDFLAGS "-L${DIR_LIB}/x86")
+    set(LIB_DIR "libs/x86")
 endif()
-set(LDFLAGS "${LDFLAGS} -lmsc -lrt -ldl -lpthread -lstdc++")
+file(GLOB 3RD_LIB "${LIB_DIR}/*.so")
+# message("3RD_LIB: ${3RD_LIB}")
 
 find_package(ament_cmake REQUIRED)
 find_package(rclcpp REQUIRED)
@@ -33,28 +29,67 @@ find_package(rclcpp_components REQUIRED)
 find_package(std_msgs REQUIRED)
 find_package(chat_msgs REQUIRED)
 
-include_directories(
-  ${PROJECT_SOURCE_DIR}/include
-)
+include_directories(include)
 
-# add_library(${PROJECT_NAME}
-#   ${PROJECT_SOURCE_DIR}/src/voice_offline/xtts_offline_sample.c
-#   ${PROJECT_SOURCE_DIR}/src/voice_online/tts_online_sample.c
-# )
+set(executable_name ${PROJECT_NAME})
+set(library_name ${executable_name}_core)
 
-# voice_offline
-add_executable(voice_offline src/voice_offline/xtts_offline_sample.cpp)
-ament_target_dependencies(voice_offline 
-  rclcpp 
-  rclcpp_components
+set(dependencies
+  rclcpp
   std_msgs
   chat_msgs
 )
-install(TARGETS voice_offline DESTINATION lib/${PROJECT_NAME})
+
+add_library(${library_name}
+  src/speak_offline.cpp
+)
+
+ament_target_dependencies(${library_name}
+  ${dependencies}
+)
+
+add_executable(${executable_name} 
+  src/speak.cpp
+)
+
+ament_target_dependencies(${executable_name} 
+  ${dependencies}
+)
+
+target_link_libraries(${executable_name}
+  ${library_name}
+  ${3RD_LIB}
+)
+
+install(TARGETS ${library_name}
+  ARCHIVE DESTINATION lib
+  LIBRARY DESTINATION lib
+  RUNTIME DESTINATION bin
+)
+
+install(TARGETS ${executable_name}
+  RUNTIME DESTINATION lib/${PROJECT_NAME}
+)
+
+install(DIRECTORY launch 
+  DESTINATION share/${PROJECT_NAME}
+)
+
+install(DIRECTORY params/
+  DESTINATION share/${PROJECT_NAME}/params/
+)
+
+install(DIRECTORY include/
+  DESTINATION include/
+)
 
 if(BUILD_TESTING)
   find_package(ament_lint_auto REQUIRED)
   ament_lint_auto_find_test_dependencies()
 endif()
+
+ament_export_include_directories(include)
+ament_export_libraries(${library_name})
+ament_export_dependencies(${dependencies})
 
 ament_package()

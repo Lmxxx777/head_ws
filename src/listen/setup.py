@@ -28,7 +28,7 @@ setup(
     tests_require=['pytest'],
     entry_points={
         'console_scripts': [
-		    'listen_online = listen.listen_online:main',
+		    'listen = listen.listen:main',
         ],
     },
 )

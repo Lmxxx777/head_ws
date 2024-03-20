@@ -1,30 +1,29 @@
 #include "rclcpp/rclcpp.hpp"
 #include "std_msgs/msg/string.hpp"
-#include "speak_offline.h"
+#include "speak_offline/speak_offline.h"
 #include "chat_msgs/msg/content.hpp"
 
 
 class SpeakNode : public rclcpp::Node
 {
 public:
-	SpeakNode() : Node("my_node"){
-		subscription_ = create_subscription<std_msgs::msg::String>("TopicA", 10, std::bind(&SpeakNode::topicCallback, this, std::placeholders::_1));
-		publisher_ = create_publisher<std_msgs::msg::String>("TopicB", 10);
+	SpeakNode() : Node("speak"){
+		subscription_ = create_subscription<chat_msgs::msg::Content>("listen", 10, std::bind(&SpeakNode::SpeakCallback, this, std::placeholders::_1));
+		publisher_ = create_publisher<chat_msgs::msg::Content>("speak", 10);
 	}
 
-	// void topicCallback(const chat_msgs::msg::Content )
-	void topicCallback(const std_msgs::msg::String::SharedPtr msg)
+	void SpeakCallback(const chat_msgs::msg::Content msg)
 	{
-		RCLCPP_INFO(this->get_logger(), "Received: '%s'", msg->data.c_str());
+		RCLCPP_INFO(this->get_logger(), "Received: '%s'", msg.content);
 
-		auto message = std_msgs::msg::String();
-		message.data = "Hello from TopicB";
+		auto message = chat_msgs::msg::Content();
+		message.content = msg.content;
 		publisher_->publish(message);
 	}
 
 private:
-	rclcpp::Subscription<std_msgs::msg::String>::SharedPtr subscription_;
-	rclcpp::Publisher<std_msgs::msg::String>::SharedPtr publisher_;
+	rclcpp::Subscription<chat_msgs::msg::Content>::SharedPtr subscription_;
+	rclcpp::Publisher<chat_msgs::msg::Content>::SharedPtr publisher_;
 };
 
 int main(int argc, char *argv[])

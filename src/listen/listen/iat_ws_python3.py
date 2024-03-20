@@ -95,7 +95,7 @@ class Ws_Param(object):
 
 wsParam = Ws_Param(APPID='8b722e6c', APISecret='ODkxYmQ0MzZhNmRmYTFkZWJkMmNmYWY4',
                     APIKey='f7fe2f1b9fab1de7894837b25372311a',
-                    AudioFile=r'/home/lmx/head_ws/src/listen_60s/resource/test_1.pcm')
+                    AudioFile=r'/home/lmx/head_ws/src/listen/resource/test_1.pcm')
  
 # 收到websocket消息的处理
 def on_message(ws, message):
