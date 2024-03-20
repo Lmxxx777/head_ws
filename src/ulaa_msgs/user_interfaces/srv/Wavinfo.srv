@@ -1,4 +1,0 @@
-string msg
----
-int32 rate
-float32[] data
