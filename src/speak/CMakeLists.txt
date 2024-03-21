@@ -50,6 +50,7 @@ set(dependencies
 
 add_library(${library_name}
   src/speak_offline/speak_offline.cpp
+  src/speak_offline/sound_control.cpp
 )
 
 ament_target_dependencies(${library_name}
@@ -72,6 +73,7 @@ target_link_libraries(${executable_name}
   dl
   pthread 
   stdc++
+  asound
 )
 
 install(TARGETS ${library_name}
