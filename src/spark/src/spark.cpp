@@ -7,6 +7,7 @@ public:
 	SparkNode() : Node("spark"){
         subscription_ = this->create_subscription<chat_msgs::msg::Content>("listen", 10, std::bind(&SparkNode::SparkCallback, this, std::placeholders::_1));
 		publisher_ = create_publisher<chat_msgs::msg::Content>("spark", 10);
+		RCLCPP_INFO(this->get_logger(), "spark node initialize successfully......");
 	}
 
 	void SparkCallback(const chat_msgs::msg::Content::ConstSharedPtr msg)

@@ -3,6 +3,7 @@
 #include "speak_offline/speak_offline.h"
 #include "chat_msgs/msg/content.hpp"
 #include "speak_offline/sound_control.h"
+
 // #define ANSI_COLOR_RED     "\x1b[31m"
 // #define ANSI_COLOR_GREEN   "\x1b[32m"
 // #define ANSI_COLOR_YELLOW  "\x1b[33m"
@@ -29,7 +30,8 @@ public:
 			message.content = msg->content;
 			// publisher_->publish(message);
 			bool play_ok = PlayWAV("/home/lmx/head_ws/src/speak/resource/speak.wav");
-			RCLCPP_INFO(this->get_logger(), "VoiceOfflineGenerator publish successfully......");
+			if(play_ok)
+				RCLCPP_INFO(this->get_logger(), "VoiceOfflineGenerator publish successfully......");
 			// RCLCPP_INFO(this->get_logger(), ANSI_COLOR_GREEN "VoiceOfflineGenerator publish successfully......" ANSI_COLOR_RESET);
 		}
 		else{

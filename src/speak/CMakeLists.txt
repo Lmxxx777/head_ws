@@ -41,8 +41,18 @@ include_directories(include)
 
 set(executable_name ${PROJECT_NAME})
 set(library_name ${executable_name}_core)
+########
+set(PROJECT_NAME_1 listen)
+set(executable_name_1 ${PROJECT_NAME_1})
+set(library_name_1 ${executable_name_1}_core)
 
 set(dependencies
+  rclcpp
+  std_msgs
+  chat_msgs
+)
+########
+set(dependencies_1
   rclcpp
   std_msgs
   chat_msgs
@@ -52,21 +62,50 @@ add_library(${library_name}
   src/speak_offline/speak_offline.cpp
   src/speak_offline/sound_control.cpp
 )
+########
+add_library(${library_name_1}
+  src/voice_record/voice2text.cpp
+  src/voice_record/speech_recognizer.c
+  src/voice_record/linuxrec.c
+)
 
 ament_target_dependencies(${library_name}
   ${dependencies}
+)
+######
+ament_target_dependencies(${library_name_1}
+  ${dependencies_1}
 )
 
 add_executable(${executable_name} 
   src/speak.cpp
 )
+######
+add_executable(${executable_name_1} 
+  src/listen.cpp
+)
 
 ament_target_dependencies(${executable_name} 
   ${dependencies}
 )
+#####
+ament_target_dependencies(${executable_name_1} 
+  ${dependencies_1}
+)
 
 target_link_libraries(${executable_name}
   ${library_name}
+  # ${3RD_LIB}
+  msc
+  rt
+  dl
+  pthread 
+  stdc++
+  asound
+)
+######
+target_link_libraries(${executable_name_1}
+  ${library_name_1}
   # ${3RD_LIB}
   msc
   rt
@@ -81,17 +120,35 @@ install(TARGETS ${library_name}
   LIBRARY DESTINATION lib
   RUNTIME DESTINATION bin
 )
+#####
+install(TARGETS ${library_name_1}
+  ARCHIVE DESTINATION lib
+  LIBRARY DESTINATION lib
+  RUNTIME DESTINATION bin
+)
 
 install(TARGETS ${executable_name}
   RUNTIME DESTINATION lib/${PROJECT_NAME}
+)
+#####
+install(TARGETS ${executable_name_1}
+  RUNTIME DESTINATION lib/${PROJECT_NAME_1}
 )
 
 install(DIRECTORY launch 
   DESTINATION share/${PROJECT_NAME}
 )
+######
+install(DIRECTORY launch 
+  DESTINATION share/${PROJECT_NAME_1}
+)
 
 install(DIRECTORY params/
   DESTINATION share/${PROJECT_NAME}/params/
+)
+######
+install(DIRECTORY params/
+  DESTINATION share/${PROJECT_NAME_1}/params/
 )
 
 install(DIRECTORY include/
@@ -106,5 +163,8 @@ endif()
 ament_export_include_directories(include)
 ament_export_libraries(${library_name})
 ament_export_dependencies(${dependencies})
+######
+ament_export_libraries(${library_name_1})
+ament_export_dependencies(${dependencies_1})
 
 ament_package()
