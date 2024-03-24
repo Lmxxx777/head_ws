@@ -1,0 +1,84 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ActionGroup>
+<FileMusic src=""/>
+<motorAction id="11">
+	<mPosition X="0" Y="90"/>
+	<mPosition X="225" Y="90"/>
+	<mPosition X="12" Y="120"/>
+	<mPosition X="11" Y="90"/>
+</motorAction>
+<motorAction id="12">
+</motorAction>
+<motorAction id="13">
+	<mPosition X="0" Y="90"/>
+	<mPosition X="200" Y="90"/>
+	<mPosition X="10" Y="86"/>
+	<mPosition X="15" Y="86"/>
+	<mPosition X="11" Y="90"/>
+</motorAction>
+<motorAction id="14">
+	<mPosition X="0" Y="90"/>
+	<mPosition X="200" Y="90"/>
+	<mPosition X="10" Y="98"/>
+	<mPosition X="15" Y="98"/>
+	<mPosition X="11" Y="90"/>
+</motorAction>
+<motorAction id="21">
+	<mPosition X="0" Y="90"/>
+	<mPosition X="200" Y="90"/>
+	<mPosition X="10" Y="97"/>
+	<mPosition X="15" Y="97"/>
+	<mPosition X="11" Y="90"/>
+</motorAction>
+<motorAction id="22">
+	<mPosition X="0" Y="90"/>
+	<mPosition X="200" Y="90"/>
+	<mPosition X="10" Y="94"/>
+	<mPosition X="15" Y="94"/>
+	<mPosition X="11" Y="89"/>
+</motorAction>
+<motorAction id="23">
+</motorAction>
+<motorAction id="24">
+	<mPosition X="0" Y="90"/>
+	<mPosition X="225" Y="90"/>
+	<mPosition X="12" Y="64"/>
+	<mPosition X="11" Y="90"/>
+</motorAction>
+<motorAction id="31">
+	<mPosition X="0" Y="90"/>
+	<mPosition X="74" Y="90"/>
+	<mPosition X="14" Y="58"/>
+	<mPosition X="12" Y="89"/>
+</motorAction>
+<motorAction id="32">
+	<mPosition X="0" Y="65"/>
+	<mPosition X="74" Y="65"/>
+	<mPosition X="12" Y="70"/>
+	<mPosition X="14" Y="65"/>
+</motorAction>
+<motorAction id="33">
+</motorAction>
+<motorAction id="34">
+</motorAction>
+<motorAction id="41">
+</motorAction>
+<motorAction id="42">
+	<mPosition X="0" Y="90"/>
+	<mPosition X="200" Y="90"/>
+	<mPosition X="25" Y="66"/>
+</motorAction>
+<motorAction id="43">
+	<mPosition X="0" Y="90"/>
+	<mPosition X="200" Y="90"/>
+	<mPosition X="25" Y="107"/>
+</motorAction>
+<motorAction id="44">
+	<mPosition X="0" Y="90"/>
+	<mPosition X="74" Y="90"/>
+	<mPosition X="13" Y="113"/>
+	<mPosition X="13" Y="89"/>
+</motorAction>
+<CarAction>
+</CarAction>
+</ActionGroup>

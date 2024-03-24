@@ -1,0 +1,104 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ActionGroup>
+<FileMusic src="moto/综合动作.wav"/>
+<motorAction id="43">
+	<mPosition X="0" Y="90"/>
+	<mPosition X="16" Y="95"/>
+	<mPosition X="33" Y="100"/>
+	<mPosition X="1" Y="90"/>
+	<mPosition X="29" Y="100"/>
+	<mPosition X="12" Y="95"/>
+	<mPosition X="59" Y="90"/>
+</motorAction>
+<motorAction id="42">
+</motorAction>
+<motorAction id="33">
+	<mPosition X="0" Y="90"/>
+	<mPosition X="28" Y="90"/>
+	<mPosition X="15" Y="96"/>
+	<mPosition X="1" Y="96"/>
+	<mPosition X="57" Y="60"/>
+	<mPosition X="4" Y="60"/>
+	<mPosition X="31" Y="90"/>
+	<mPosition X="4" Y="90"/>
+</motorAction>
+<motorAction id="44">
+	<mPosition X="0" Y="90"/>
+	<mPosition X="20" Y="90"/>
+	<mPosition X="4" Y="90"/>
+	<mPosition X="7" Y="90"/>
+	<mPosition X="13" Y="90"/>
+	<mPosition X="11" Y="90"/>
+	<mPosition X="21" Y="101"/>
+	<mPosition X="5" Y="101"/>
+	<mPosition X="20" Y="90"/>
+</motorAction>
+<motorAction id="31">
+	<mPosition X="0" Y="90"/>
+	<mPosition X="20" Y="90"/>
+	<mPosition X="4" Y="90"/>
+	<mPosition X="7" Y="90"/>
+	<mPosition X="13" Y="90"/>
+	<mPosition X="11" Y="90"/>
+	<mPosition X="21" Y="79"/>
+	<mPosition X="5" Y="79"/>
+	<mPosition X="20" Y="90"/>
+</motorAction>
+<motorAction id="11">
+	<mPosition X="0" Y="90"/>
+	<mPosition X="55" Y="90"/>
+	<mPosition X="10" Y="70"/>
+	<mPosition X="10" Y="90"/>
+	<mPosition X="20" Y="90"/>
+</motorAction>
+<motorAction id="24">
+	<mPosition X="0" Y="90"/>
+	<mPosition X="55" Y="90"/>
+	<mPosition X="10" Y="110"/>
+	<mPosition X="10" Y="90"/>
+	<mPosition X="20" Y="90"/>
+</motorAction>
+<motorAction id="14">
+	<mPosition X="0" Y="85"/>
+	<mPosition X="60" Y="85"/>
+	<mPosition X="19" Y="100"/>
+	<mPosition X="15" Y="86"/>
+</motorAction>
+<motorAction id="21">
+	<mPosition X="0" Y="85"/>
+	<mPosition X="60" Y="85"/>
+	<mPosition X="19" Y="100"/>
+	<mPosition X="15" Y="86"/>
+</motorAction>
+<motorAction id="13">
+	<mPosition X="0" Y="90"/>
+	<mPosition X="7" Y="90"/>
+	<mPosition X="9" Y="90"/>
+	<mPosition X="7" Y="90"/>
+	<mPosition X="11" Y="90"/>
+</motorAction>
+<motorAction id="22">
+	<mPosition X="0" Y="90"/>
+	<mPosition X="7" Y="90"/>
+	<mPosition X="9" Y="90"/>
+	<mPosition X="7" Y="90"/>
+	<mPosition X="11" Y="90"/>
+</motorAction>
+<motorAction id="12">
+	<mPosition X="0" Y="90"/>
+	<mPosition X="2" Y="86"/>
+	<mPosition X="9" Y="87"/>
+	<mPosition X="63" Y="100"/>
+	<mPosition X="71" Y="86"/>
+	<mPosition X="10" Y="90"/>
+</motorAction>
+<motorAction id="23">
+	<mPosition X="0" Y="90"/>
+	<mPosition X="11" Y="89"/>
+	<mPosition X="63" Y="74"/>
+	<mPosition X="71" Y="89"/>
+	<mPosition X="10" Y="90"/>
+</motorAction>
+<CarAction>
+</CarAction>
+</ActionGroup>

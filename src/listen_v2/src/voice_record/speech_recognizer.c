@@ -151,7 +151,6 @@ static int update_format_from_sessionparam(const char * session_para, WAVEFORMAT
  * to use the default input device. Currently the device list function is
  * not provided yet. 
  */
-
 int sr_init_ex(struct speech_rec * sr, const char * session_begin_params, 
 			enum sr_audsrc aud_src, record_dev_id devid, 
 				struct speech_rec_notifier * notify)

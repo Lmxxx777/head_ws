@@ -21,9 +21,22 @@ find_package(std_msgs REQUIRED)
 find_package(geometry_msgs REQUIRED)
 find_package(rosidl_default_generators REQUIRED)
 
-rosidl_generate_interfaces(${PROJECT_NAME}
+set (msg_files
   "msg/Content.msg"
+  "msg/Action.msg"
+  "msg/Servo.msg"
+)
+set(srv_files
   "srv/Console.srv"
+)
+set(action_files
+  
+)
+
+rosidl_generate_interfaces(${PROJECT_NAME}
+  ${msg_files}
+  ${srv_files}
+  ${action_files}
   DEPENDENCIES std_msgs geometry_msgs # Add packages that above messages depend on, in this case geometry_msgs for Sphere.msg
 )
 

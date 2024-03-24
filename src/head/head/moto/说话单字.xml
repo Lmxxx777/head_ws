@@ -1,0 +1,43 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ActionGroup>
+<FileMusic src=""/>
+<motorAction id="11">
+</motorAction>
+<motorAction id="12">
+</motorAction>
+<motorAction id="13">
+</motorAction>
+<motorAction id="14">
+</motorAction>
+<motorAction id="21">
+</motorAction>
+<motorAction id="22">
+</motorAction>
+<motorAction id="23">
+</motorAction>
+<motorAction id="24">
+</motorAction>
+<motorAction id="31">
+</motorAction>
+<motorAction id="32">
+	<mPosition X="0" Y="65"/>
+	<mPosition X="4" Y="79"/>
+	<mPosition X="6" Y="95"/>
+	<mPosition X="6" Y="82"/>
+	<mPosition X="2" Y="65"/>
+</motorAction>
+<motorAction id="33">
+</motorAction>
+<motorAction id="34">
+</motorAction>
+<motorAction id="41">
+</motorAction>
+<motorAction id="42">
+</motorAction>
+<motorAction id="43">
+</motorAction>
+<motorAction id="44">
+</motorAction>
+<CarAction>
+</CarAction>
+</ActionGroup>

@@ -14,7 +14,7 @@ class ListenNode : public rclcpp::Node
 {
 public:
 	ListenNode() : Node("listen"){
-		mic1_file2 = 2;
+		mic1_file2 = 1;
 		voice_path = "/home/lmx/head_ws/src/listen_v2/resource/listen.wav";
 		userwords_path = "/home/lmx/head_ws/src/listen_v2/bin/userwords.txt";
 		subscription_ = create_subscription<std_msgs::msg::Int8>("head_console", 10, std::bind(&ListenNode::ListenCallback, this, std::placeholders::_1));
