@@ -24,6 +24,7 @@ class RobotCtrlNode(Node, ServoCtrl):
                 msg.mouth]
         self.send(msgs)
         time.sleep(0.001)
+        print("send control msgs", msgs)
 
 def main(args=None):
     rclpy.init(args=args)

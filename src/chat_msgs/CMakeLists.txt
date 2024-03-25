@@ -25,6 +25,7 @@ set (msg_files
   "msg/Content.msg"
   "msg/Action.msg"
   "msg/Servo.msg"
+  "msg/State.msg"
 )
 set(srv_files
   "srv/Console.srv"

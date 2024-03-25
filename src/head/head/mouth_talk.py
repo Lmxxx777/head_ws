@@ -2,7 +2,7 @@ from numpy import rate
 import rclpy
 from rclpy.node import Node
 from std_msgs.msg import String , Int32
-from xml_read import XmlData , TimeTable
+from xml_read import XmlData
 from chat_msgs.msg import Servo
 from chat_msgs.msg import State
 import sounddevice as sd
@@ -18,7 +18,6 @@ class TalkSubscriber(Node):
         self.dataxml = XmlData()
         self.xml_data = self.dataxml.xml_moto()
         self.acts_data = self.dataxml.xml_act()
-        self.timetable = TimeTable()
 
         self.talk_sub = self.create_subscription(String, 'test', self.talk_callback, 10) # 订阅 语音
         self.pub = self.create_publisher(Servo, "robot_state", 10) # 解析动作指令 发布消息
@@ -28,6 +27,7 @@ class TalkSubscriber(Node):
         timer_period = 0.02  # seconds
         self.timer = self.create_timer(timer_period, self.timer_callback)
         
+        # 电机ID和其控制的部位的英文
         self.nameE = {11 :'left_blink' , 12 :'left_smile' , 13 :'left_eye_erect' , 14 :'left_eye_level' , 44 :'left_eyebrow' ,
                 24 :'right_blink' , 23 :'right_smile' , 22 :'right_eye_erect' , 21 :'right_eye_level' , 31 :'right_eyebrow' ,
                 43 :'head_dian'   , 42 :'head_yao'    , 33 :'head_bai'        ,
@@ -121,6 +121,7 @@ class TalkSubscriber(Node):
             self.myrecording = sd.rec(int(self.time * self.fs), samplerate=self.fs, channels=1)
             sd.wait()
             sd.stop()
+    
     #录音设备回调函数
     def streamCallback(self, indata, frames, time, status):
         if status:

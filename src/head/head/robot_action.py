@@ -1,7 +1,3 @@
-
-#!/usr/bin/env python3
-# -*- coding: utf-8 -*-
-
 import rclpy
 from rclpy.node import Node
 from std_msgs.msg import String
@@ -19,7 +15,7 @@ class ActionSubscriber(Node):
         self.acts_data = self.dataxml.xml_act()
         self.timetable = TimeTable()
 
-        self.sub_status = self.create_subscription(String, 'face_ctrl', self.status_callback, 10) # 订阅　机器人当前状态
+        # self.sub_status = self.create_subscription(String, 'face_ctrl', self.status_callback, 10) # 订阅　机器人当前状态
         self.sub = self.create_subscription(String, 'face_action', self.action_callback, 10) # 订阅std 各种表情测试节点
         self.pub = self.create_publisher(Servo, "robot_state", 10) # 解析动作指令 发布消息
         timer_period = 8 # seconds
@@ -35,16 +31,17 @@ class ActionSubscriber(Node):
         # self.get_logger().info(self.dataxml.nameall)
 
 
-    def status_callback(self, msg):
-        self.get_logger().info('Receiving status2')   # 输出日志信息，提示已进入回调函数        
-        if '开启' in msg.data:
-            self.expr_flag = 1
-        else:
-            self.expr_flag = 0
-        print('self.expr_flag',self.expr_flag)
+    # def status_callback(self, msg):
+    #     self.get_logger().info('Receiving status2')   # 输出日志信息，提示已进入回调函数        
+    #     if '开启' in msg.data:
+    #         self.expr_flag = 1
+    #     else:
+    #         self.expr_flag = 0
+    #     print('self.expr_flag',self.expr_flag)
 
     def action_callback(self, msg):
-        print("get msg.data:",msg.data)
+        print("get msg.data:", msg.data)
+        # moto里面已经设定好参数的动作
         for name in self.dataxml.nameall:
             if name == msg.data :
                 # self.get_logger().info('call back')
@@ -53,28 +50,29 @@ class ActionSubscriber(Node):
                 break
 
     def Std_action(self, action):
-        # self.get_logger().info('Receiving action')   # 输出日志信息，提示已进入回调函数
         servos = Servo()
         # print('发送准备中\n...\n:',self.timetable.Timetable(action))
         self.timetable.Timetable(action)
         time1 = 0 
         timeold = 0
         #计时器 发送 id 匹配到
-        for Send_time in self.timetable.timeline :
+        for Send_time in self.timetable.timeline:
             time1 = Send_time - timeold
+            # TODO: 时刻0，不会发，哪些电机的值怎么办？
             if time1 != 0 :
                 # print("时间节点:",Send_time)
                 id_send = self.timetable.Timetable(action)[Send_time]#发送同一时刻的id动作和时间
                 for id in id_send :
-                    name = self.nameE[id]
-                    pos = int(id_send[id]['pos'])
-                    tim = int(id_send[id]['tim']) *20
+                    name = self.nameE[id]   # 电机ID
+                    pos = int(id_send[id]['pos'])   # Y的值，pos
+                    tim = int(id_send[id]['tim']) * 20
                     setattr(servos, name, [pos, tim])
+                    print(servos)
                 self.pub.publish(servos)
             # print("tim:",time1)
             # print("Send_time:",Send_time)
             # print("time1*10/1000:",time1*18/1000)
-            time.sleep(time1*18/1000)
+            time.sleep(time1 * 18 / 1000)
             timeold = Send_time
         # print(action)
         print("send_all_finish")   
