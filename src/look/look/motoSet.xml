@@ -1,0 +1,51 @@
+﻿<?xml version="1.0" encoding="UTF-8"?> <!--这种尖括号结构中的内容是注释内容，不参与运算。-->
+<motoSystem> <!--代码行设定了舵机的默认起始位置、最大极限工作角度、最小极限工作角度，舵机角度归一化参数（脉冲范围*10/角度范围 如2000*10/180 1000*10/120）。-->
+	<motoSys id="11" name="左眨眼" jdStart="90" jdMax="145" jdMin="60" fScale="111.1" fOffSet="0">
+		<motoImg jd="0" src="img1.jpg"/>
+	</motoSys>
+	<motoSys id="12" name="左微笑" jdStart="90" jdMax="130" jdMin="85" fScale="111.1" fOffSet="0">
+		<motoImg jd="0" src="img1.jpg"/> 
+	</motoSys>
+	<motoSys id="13" name="左眼竖" jdStart="90" jdMax="120" jdMin="60" fScale="83.33" fOffSet="30">
+		<motoImg jd="0" src="img1.jpg"/>
+	</motoSys>
+	<motoSys id="14" name="左眼平" jdStart="90" jdMax="120" jdMin="60" fScale="83.33" fOffSet="30">
+		<motoImg jd="0" src="img1.jpg"/>
+	</motoSys>
+	<motoSys id="44" name="左眉毛" jdStart="90" jdMax="140" jdMin="40" fScale="111.1" fOffSet="0">
+		<motoImg jd="0" src="img1.jpg"/>
+	</motoSys>
+	<motoSys id="24" name="右眨眼" jdStart="90" jdMax="120" jdMin="35" fScale="111.1" fOffSet="0">
+		<motoImg jd="0" src="img1.jpg"/>
+	</motoSys>
+	<motoSys id="23" name="右微笑" jdStart="90" jdMax="95" jdMin="50" fScale="111.1" fOffSet="0">
+		<motoImg jd="0" src="img1.jpg"/>
+	</motoSys>
+	<motoSys id="22" name="右眼竖" jdStart="90" jdMax="120" jdMin="60" fScale="83.33" fOffSet="30">
+		<motoImg jd="0" src="img1.jpg"/>
+	</motoSys>
+	<motoSys id="21" name="右眼平" jdStart="90" jdMax="120" jdMin="60" fScale="83.33" fOffSet="30">
+		<motoImg jd="0" src="img1.jpg"/>
+	</motoSys>
+	<motoSys id="31" name="右眉毛" jdStart="90" jdMax="140" jdMin="40" fScale="111.1" fOffSet="0">
+		<motoImg jd="0" src="img1.jpg"/>
+	</motoSys>
+	<motoSys id="43" name="点头" jdStart="90" jdMax="160" jdMin="20" fScale="111.1" fOffSet="0">
+		<motoImg jd="0" src="img1.jpg"/>
+	</motoSys>
+	<motoSys id="42" name="摇头" jdStart="90" jdMax="160" jdMin="20" fScale="111.1" fOffSet="0">
+		<motoImg jd="0" src="img1.jpg"/>
+	</motoSys>
+	<motoSys id="33" name="摆头" jdStart="90" jdMax="160" jdMin="20" fScale="111.1" fOffSet="0">
+		<motoImg jd="0" src="img1.jpg"/>
+	</motoSys>
+	<motoSys id="32" name="张嘴" jdStart="65" jdMax="135" jdMin="60" fScale="111.1" fOffSet="0">
+		<motoImg jd="0" src="img1.jpg"/>
+	</motoSys>
+	<motoSys id="34" name="空1" jdStart="90" jdMax="140" jdMin="40" fScale="111.1" fOffSet="0">
+		<motoImg jd="0" src="img1.jpg"/>
+	</motoSys>
+	<motoSys id="41" name="空2" jdStart="90" jdMax="140" jdMin="40" fScale="111.1" fOffSet="0">
+		<motoImg jd="0" src="img1.jpg"/>
+	</motoSys>
+</motoSystem>

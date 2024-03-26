@@ -8,6 +8,9 @@ class HeadConsole(Node):
         super().__init__(name)
         self.publisher_head_console = self.create_publisher(Int8, 'head_console', 10)
         self.publisher_face_action = self.create_publisher(String, 'face_action', 10)
+        self.publisher_copy_action = self.create_publisher(Int8, 'copy_action', 10)
+
+        self.copy_begin = 1
         self.timer = self.create_timer(1.0, self.timer_callback)
         self.get_logger().info('HeadConsole initialized')
 
@@ -15,15 +18,23 @@ class HeadConsole(Node):
         self.get_logger().info('Enter a command: ')
         terminal_input = int(input())
         if terminal_input == 1:
-            message = Int8()
-            message.data = int(terminal_input)
-            self.publisher_head_console.publish(message)
+            self.Chat()
         elif terminal_input == 2:
-            self.DIY_action()
-        else:
-            print("输入1 or 2")
+            self.DefaultAction()
+        elif terminal_input == 3:
+            print("展示表请跟随\n")
+            self.CopyAction(3)
+        elif terminal_input == 4:
+            print("关闭表请跟随\n")
+            self.CopyAction(4)
 
-    def DIY_action(self):
+    def Chat(self):
+        print("聊天状态\n")
+        message = Int8()
+        message.data = 1
+        self.publisher_head_console.publish(message)
+
+    def DefaultAction(self):
         print("***************************************************************************************************\n")
         print("**   0.初始化\n")
         print("**   1.单次眨眼  2.单纯摇头（否定）  3.单次点头（肯定）  4.皱眉摇头（强烈否定）  5.皱眉瞪眼（生气）\n")
@@ -92,10 +103,15 @@ class HeadConsole(Node):
 
         self.publisher_face_action.publish(message)
         self.get_logger().info(f'Published face_action message: {message.data}')  # 打印消息
-        
 
-def main(args=None):
-    rclpy.init(args=args)
+    def CopyAction(self, command):
+        message = Int8()
+        message.data = (command - 2)
+        self.publisher_head_console.publish(message)
+ 
+
+def main():
+    rclpy.init()
     node = HeadConsole('head_console')
     rclpy.spin(node)
     node.destroy_node()

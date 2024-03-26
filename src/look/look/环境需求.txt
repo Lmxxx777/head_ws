@@ -1,0 +1,12 @@
+注意python的使用版本为3.9
+也可以不注意
+numpy
+pandas
+matplotlib
+pytorch
+opencv
+sklearn
+boost
+cmake
+dlib
+scikit-image

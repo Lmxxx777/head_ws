@@ -27,7 +27,7 @@ setup(
         'console_scripts': [
             'facial_features = head.robot_control:main',
             'facial_expression = head.robot_action:main',
-            'facial_mouth = head.mouth_talk:main',
+            # 'facial_mouth = head.mouth_talk:main',
         ],
     },
 )

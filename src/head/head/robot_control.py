@@ -22,8 +22,9 @@ class RobotCtrlNode(Node, ServoCtrl):
                 msg.right_blink, msg.right_smile, msg.right_eye_erect, msg.right_eye_level, msg.right_eyebrow,
                 msg.head_dian, msg.head_yao, msg.head_bai,
                 msg.mouth]
+        print(msgs)
         self.send(msgs)
-        time.sleep(0.001)
+        time.sleep(0.001) # 1ms
         print("send control msgs", msgs)
 
 def main(args=None):
