@@ -11,7 +11,7 @@ int main(void){
     //初始化VLC引擎
     inst = libvlc_new (0, NULL);
     //指定本地根目录下/test.mp4为视频来源,请按实际路径指定,可以去https://www.haolizi.net/example/view_20786.html下载各种格式测试视频
-    vlc_media = libvlc_media_new_path(inst, "/home/lmx/head_ws/src/speak/resource/speak.wav/home/lmx/head_ws/src/speak/resource/speak.wav");
+    vlc_media = libvlc_media_new_path(inst, "/home/imi/head_ws/src/speak/resource/speak.wav/home/imi/head_ws/src/speak/resource/speak.wav");
     //创建VLC视频播放器,根据vlc_media
     vlc_player = libvlc_media_player_new_from_media(vlc_media);
     //以下代码暂时不使用vlc_media指针了，所以提前释放了

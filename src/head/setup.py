@@ -25,8 +25,8 @@ setup(
     tests_require=['pytest'],
     entry_points={
         'console_scripts': [
-            'facial_features = head.robot_control:main',
-            'facial_expression = head.robot_action:main',
+            'facial_control = head.robot_control:main',
+            'facial_action = head.robot_action:main',
             # 'facial_mouth = head.mouth_talk:main',
         ],
     },

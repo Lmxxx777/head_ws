@@ -21,7 +21,7 @@ endif()
 # endif()
 # file(GLOB 3RD_LIB "${LIB_DIR}/*.so")
 # message("3RD_LIB: ${3RD_LIB}")
-# set(LIB_DIR "/home/lmx/head_ws/src/speak/libs/x64")
+# set(LIB_DIR "/home/imi/head_ws/src/speak/libs/x64")
 
 find_package(ament_cmake REQUIRED)
 find_package(rclcpp REQUIRED)
@@ -36,7 +36,7 @@ include_directories(include)
 # 使用locate libxxx.so，可以找到他在电脑中的位置，然后直接把他cp到/usr/lib
 # 在下面的target_link_libraries中，就可以用像link系统中的库时用xxx来link到libxxx.so，
 # 不用考虑是不是路径问题，最简单解禁额问题，这次的问题相对路径和绝对路径等方法都不行
-# link_directories(/home/lmx/head_ws/src/speak/libs/x64/)
+# link_directories(/home/imi/head_ws/src/speak/libs/x64/)
 
 set(executable_name ${PROJECT_NAME})
 set(library_name ${executable_name}_core)

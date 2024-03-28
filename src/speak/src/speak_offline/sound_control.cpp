@@ -25,7 +25,7 @@ void set_master_volume(long volume){
 }
 
 bool PlayWAV(std::string wav_file_name){
-    // wav_file_name = "/home/lmx/head_ws/src/speak/resource/speak.wav";
+    // wav_file_name = "/home/imi/head_ws/src/speak/resource/speak.wav";
 
     // open wav file 
     std::fstream wav(wav_file_name, std::ios_base::in|std::ios::binary );

@@ -25,7 +25,7 @@ int main(int argc, char* argv[])
     //Screen Capture
     //m = libvlc_media_new_location (inst, "screen://");
     //Method 2:
-    m = libvlc_media_new_path (inst, "/home/lmx/head_ws/src/speak/resource/speak.wav/home/lmx/head_ws/src/speak/resource/speak.wav");
+    m = libvlc_media_new_path (inst, "/home/imi/head_ws/src/speak/resource/speak.wav/home/imi/head_ws/src/speak/resource/speak.wav");
     
     /* Create a media player playing environement */
     mp = libvlc_media_player_new_from_media (m);

@@ -29,7 +29,7 @@ public:
 			auto message = chat_msgs::msg::Content();
 			message.content = msg->content;
 			// publisher_->publish(message);
-			bool play_ok = PlayWAV("/home/lmx/head_ws/src/speak/resource/speak.wav");
+			bool play_ok = PlayWAV("/home/imi/head_ws/src/speak/resource/speak.wav");
 			if(play_ok)
 				RCLCPP_INFO(this->get_logger(), "VoiceOfflineGenerator publish successfully......");
 			// RCLCPP_INFO(this->get_logger(), ANSI_COLOR_GREEN "VoiceOfflineGenerator publish successfully......" ANSI_COLOR_RESET);
@@ -42,7 +42,7 @@ public:
 
 private:
 	VoiceOffline VF;
-	const char* voice_save_path = "/home/lmx/head_ws/src/speak/resource/speak.wav";
+	const char* voice_save_path = "/home/imi/head_ws/src/speak/resource/speak.wav";
 	rclcpp::Subscription<chat_msgs::msg::Content>::SharedPtr subscription_;
 	// rclcpp::Publisher<chat_msgs::msg::Content>::SharedPtr publisher_;
 };

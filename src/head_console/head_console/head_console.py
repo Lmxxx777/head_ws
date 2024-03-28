@@ -106,8 +106,8 @@ class HeadConsole(Node):
 
     def CopyAction(self, command):
         message = Int8()
-        message.data = (command - 2)
-        self.publisher_head_console.publish(message)
+        message.data = command
+        self.publisher_copy_action.publish(message)
  
 
 def main():

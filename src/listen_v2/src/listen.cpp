@@ -15,8 +15,8 @@ class ListenNode : public rclcpp::Node
 public:
 	ListenNode() : Node("listen"){
 		mic1_file2 = 1;
-		voice_path = "/home/lmx/head_ws/src/listen_v2/resource/listen.wav";
-		userwords_path = "/home/lmx/head_ws/src/listen_v2/bin/userwords.txt";
+		voice_path = "/home/imi/head_ws/src/listen_v2/resource/listen.wav";
+		userwords_path = "/home/imi/head_ws/src/listen_v2/bin/userwords.txt";
 		subscription_ = create_subscription<std_msgs::msg::Int8>("head_console", 10, std::bind(&ListenNode::ListenCallback, this, std::placeholders::_1));
 		publisher_ = create_publisher<chat_msgs::msg::Content>("listen", 10);
 		bool ini_ok = initialization(userwords_path);

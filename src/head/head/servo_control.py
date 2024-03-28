@@ -1,4 +1,5 @@
 from serial import Serial
+import time
 
 # TODO: 从xml文件直接读取配置
 class Servo:
@@ -69,8 +70,12 @@ class ServoCtrl(Serial):
                     node[0] = int((node[0] + servo.fOffSet) * servo.fScale)
                     pos_l = node[0] & 0xFF
                     pos_h = (node[0] >> 8) & 0xFF
+
                     time_l = node[1] & 0xFF
                     time_h = (node[1] >> 8) & 0xFF
+                    # time_l = (node[1] * 200) & 0xFF
+                    # time_h = ((node[1] * 200) >> 8) & 0xFF
+
                     frameData.extend([servo.id, pos_h, pos_l, time_h, time_l])
                     servo_num += 1
         if servo_num == 0:
@@ -89,14 +94,60 @@ class ServoCtrl(Serial):
         
         if self.is_open:
             self.write(serFrame)
-            print('send to servo ok',serFrame)
+            print('send to servo ok!!!!!!!!!!\n')
+            # print('send to servo ok',serFrame)
     
 
 if __name__ == '__main__':
-    servo11 = [80, 1000]
-    servo12 = [100, 1000]
-    msgs = [servo11, servo12]
-    servo_ctrl = ServoCtrl('/dev/ttyUSB2', 115200) #921600
-    servo_ctrl.send(msgs)
-    print(msgs)
+    servo_ctrl = ServoCtrl('/dev/ttyUSB0', 115200) #921600
 
+    left_blink      = [ 91, 10]# 左眨眼 
+    left_smile      = [ 91, 10]# 左微笑
+    left_eye_erect  = [ 91, 10]# 左眼竖
+    left_eye_level  = [ 91, 10]# 左眼平
+    left_eyebrow    = [ 91, 10]# 左眉毛
+
+    right_blink     = [ 91, 10]# 右眨眼
+    right_smile     = [ 91, 10]# 右微笑
+    right_eye_erect = [ 91, 10]# 右眼竖//
+    right_eye_level = [ 91, 10]# 右眼平//
+    right_eyebrow   = [ 91, 10]# 右眉毛
+
+    head_dian       = [ 91, 10]# 点头
+    head_yao        = [ 91, 10]# 摇头 85
+    head_bai        = [ 91, 10]# 摆头85
+
+    mouth           = [ 66, 10]# 嘴巴
+
+    msgs = [left_blink, left_smile, left_eye_erect, left_eye_level, left_eyebrow, right_blink, right_smile, right_eye_erect, right_eye_level, right_eyebrow, head_dian, head_yao, head_bai, mouth] 
+    print("初始化：\n", msgs)
+    servo_ctrl.send(msgs)
+    time.sleep(200 * 18 / 1000)
+
+    # for i in range(10):
+    #     for j in range(14):
+    #         msgs[j][0] = msgs[j][0] + 5
+    #         msgs[j][1] = msgs[j][1] + 20
+    #         print(msgs[j])
+    #     print("第几轮：\n", i)
+    #     print(msgs)
+    #     servo_ctrl.send(msgs)
+    #     time.sleep(200 * 18 / 1000)
+
+
+    # print("重置：\n", msgs)
+    # msgs = [left_blink, left_smile, left_eye_erect, left_eye_level, left_eyebrow, right_blink, right_smile, right_eye_erect, right_eye_level, right_eyebrow, head_dian, head_yao, head_bai, mouth] 
+    # servo_ctrl.send(msgs)
+    # time.sleep(200 * 18 / 1000)
+
+    # for i in range(10):
+    #     for j in range(14):
+    #         msgs[j][0] = msgs[j][0] + 5
+    #         msgs[j][1] = msgs[j][1] + 20
+    #         print(msgs[j])
+
+        
+    #     time.sleep(20 * 18 / 1000)
+    #     print("第几轮：\n", i)
+    #     print(msgs)
+    #     servo_ctrl.send(msgs)

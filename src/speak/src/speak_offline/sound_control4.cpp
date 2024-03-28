@@ -3,7 +3,7 @@
 
 int main() {
     // 打开.wav文件
-    const char* wavFile = "/home/lmx/head_ws/src/speak/resource/speak.wav/home/lmx/head_ws/src/speak/resource/speak.wav";
+    const char* wavFile = "/home/imi/head_ws/src/speak/resource/speak.wav/home/imi/head_ws/src/speak/resource/speak.wav";
     SF_INFO sfInfo;
     SNDFILE* sndFile = sf_open(wavFile, SFM_READ, &sfInfo);
     if (!sndFile) {
