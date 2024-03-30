@@ -9,4 +9,6 @@ colcon build --packages-select chat_msgs
 
 colcon build
 
+colcon build
+
 source install/setup.bash

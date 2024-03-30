@@ -38,13 +38,13 @@ bool initialization(const char * userwords_path)
 	return true;
 }
 
-char * voiceRecorder(int mic1_file2, const char * file_path){
+char * voiceRecorder(int mic1_file2, int period, const char * file_path){
 	char * content = "";
 	if(mic1_file2 == 1) {
 		printf("Demo recognizing the speech from microphone\n");
 		printf("Speak in 15 seconds\n");
 
-		bool mic_record = demo_mic(session_begin_params);
+		bool mic_record = demo_mic(session_begin_params, period);
 
 		printf("15 sec passed\n");
 	} else {
@@ -260,7 +260,7 @@ bool demo_file(const char* audio_file, const char* session_begin_params)
 }
 
 /* demo recognize the audio from microphone */
-bool demo_mic(const char* session_begin_params)
+bool demo_mic(const char* session_begin_params, int period)
 {
 	int errcode;
 	int i = 0;
@@ -283,8 +283,8 @@ bool demo_mic(const char* session_begin_params)
 		printf("start listen failed %d\n", errcode);
 		return false;
 	}
-	/* demo 15 seconds recording */
-	while(i++ < 15)
+	/* demo period(s) seconds recording */
+	while(i++ < period)
 		sleep(1);
 	errcode = sr_stop_listening(&iat);
 	if (errcode) {

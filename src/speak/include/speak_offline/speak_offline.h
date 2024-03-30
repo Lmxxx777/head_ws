@@ -42,11 +42,11 @@ const wave_pcm_hdr default_wav_hdr =
 	1,
 	1,
 	16000,
-	32000,
-	2,
+	16000,
+	144,
 	16,
 	{'d', 'a', 't', 'a'},
-	0  
+	0
 };
 
 class VoiceOffline{
@@ -63,7 +63,7 @@ private:
 	* text_encoding: 合成文本编码格式
 	*
 	*/
-	const char* session_begin_params = "engine_type = purextts,voice_name=xiaoyan, text_encoding = UTF8, tts_res_path = fo|/home/imi/head_ws/src/speak/bin/msc/res/xtts/xiaoyan.jet;fo|/home/imi/head_ws/src/speak/bin/msc/res/xtts/common.jet, sample_rate = 16000, speed = 50, volume = 50, pitch = 50, rdn = 2";
+	const char* session_begin_params = "engine_type = purextts,voice_name=xiaofeng, text_encoding = UTF8, tts_res_path = fo|/home/imi/head_ws/src/speak/bin/msc/res/xtts/xiaofeng.jet;fo|/home/imi/head_ws/src/speak/bin/msc/res/xtts/common.jet, sample_rate = 16000, speed = 30, volume = 50, pitch = 45, rdn = 2";
 
     int text_to_speech(const char* src_text, const char* des_path, const char* params);
 public:

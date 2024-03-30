@@ -24,7 +24,7 @@ class XmlData:
     # B的值是电机的一些参数，值是参数对应的值。
     def xml_moto(self):
         #(文件名更改)
-        dom = xml.dom.minidom.parse('/home/imi/head_ws/src/face_detection/face_detection/motoSet.xml')
+        dom = xml.dom.minidom.parse('/home/lmx/head_ws/src/face_detection/face_detection/motoSet.xml')
         root = dom.documentElement
         #属性名更改
         itemlist = root.getElementsByTagName('motoSys')

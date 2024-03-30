@@ -17,14 +17,14 @@
 //     "result_type = plain, result_encoding = utf8";
 
 bool initialization(const char * userwords_path);
-char * voiceRecorder(int mic1_file2 = 1, const char * file_path = "");
+char * voiceRecorder(int mic1_file2 = 1, int period = 15, const char * file_path = "");
 bool upload_userwords(const char * userwords_path);
 void show_result(char *string, char is_over);
 void on_result(const char *result, char is_last);
 void on_speech_begin();
 void on_speech_end(int reason);
 bool demo_file(const char* audio_file, const char* session_begin_params);
-bool demo_mic(const char* session_begin_params);
+bool demo_mic(const char* session_begin_params, int period);
 
 static char *g_result = NULL;
 static unsigned int g_buffersize = BUFFER_SIZE;

@@ -1,7 +1,7 @@
 import rclpy
 import string
 from rclpy.node import Node
-from std_msgs.msg import Int8, String
+from std_msgs.msg import String, Int8
 
 class HeadConsole(Node):
     def __init__(self, name):
@@ -9,14 +9,40 @@ class HeadConsole(Node):
         self.publisher_head_console = self.create_publisher(Int8, 'head_console', 10)
         self.publisher_face_action = self.create_publisher(String, 'face_action', 10)
         self.publisher_copy_action = self.create_publisher(Int8, 'copy_action', 10)
+        self.order_sub = self.create_subscription(Int8, 'order', self.Order_Callback, 10)
+        self.publisher_gTTS = self.create_publisher(String, 'gTTS', 10)
 
-        self.copy_begin = 1
-        self.timer = self.create_timer(1.0, self.timer_callback)
+        # self.timer = self.create_timer(1.0, self.timer_callback)
         self.get_logger().info('HeadConsole initialized')
+
+
+    def Order_Callback(self, msg):
+        self.get_logger().info('Order: "%d"' % msg.data)
+        print("Order: ", msg.data)
+        print(type(msg.data))
+
+        order = msg.data
+        if order == 1:
+            self.Chat()
+        elif order == 2:
+            self.DefaultAction()
+        elif order == 3:
+            print("展示表请跟随\n")
+            self.CopyAction(3)
+        elif order == 4:
+            print("关闭表请跟随\n")
+            self.CopyAction(4)
+        else:
+            print("无效命令\n")
+            message = String()
+            message.data = "无效命令"
+            self.publisher_gTTS.publish(message)
+
 
     def timer_callback(self):
         self.get_logger().info('Enter a command: ')
-        terminal_input = int(input())
+        terminal_input = input()
+        terminal_input = int(terminal_input)
         if terminal_input == 1:
             self.Chat()
         elif terminal_input == 2:

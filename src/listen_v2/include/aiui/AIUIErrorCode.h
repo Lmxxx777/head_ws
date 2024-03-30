@@ -258,7 +258,7 @@ public:
     static const int MSP_ERROR_ASE_EXCEP_PAPERFMT             = 11407;
     static const int MSP_ERROR_ASE_EXCEP_ULISTWORD            = 11408;
 
-    /*Error Code Of ivw optimization */
+    /*Error Code Of ivw optlmxzation */
     static const int MSP_ERROR_IVW_MODEL_TRAINING             = 11501;  /* 模型资源正在生成中 */
     static const int MSP_ERROR_IVW_MODEL_NO_FOUND             = 11502;  /* 无新模型资源 */
     static const int MSP_ERROR_IVW_BUSY                       = 11503;  /* 服务繁忙 */
@@ -457,7 +457,7 @@ public:
     static const int ERROR_AITALK_SPEECH_OUT_TIME                    = 23120; // ivErr_SpeechOutTime       = 21 /*语音超时*/
     static const int ERROR_AITALK_AUDIO_CUT                          = 23121; // ivErr_CUT                 = 22 /*录音质量过高*/
     static const int ERROR_AITALK_AUDIO_LOWER                        = 23122; // ivErr_LOWER               = 23 /*录音质量过低*/
-    static const int ERROR_AITALK_INSUFFICIENT_PERMISSIONS           = 23123; // ivErr_Limitted            = 24 /*授权不够*/
+    static const int ERROR_AITALK_INSUFFICIENT_PERMISSIONS           = 23123; // ivErr_Llmxtted            = 24 /*授权不够*/
     static const int ERROR_AITALK_RESULT_ERROR                       = 23124; // ivErr_ResultError         = 25 /*解码器Wfst输出后，依然有cmd输出*/
     static const int ERROR_AITALK_SHORT_PAUSE                        = 23125; // ivErr_ShortPause          = 26
     static const int ERROR_AITALK_BUSY                               = 23126; // ivErr_Busy                = 27
@@ -524,7 +524,7 @@ public:
     static const int ERROR_IVW_NOT_SUPPORT              = 25109;  // IvwErr_NotSupport    = 9
     static const int ERROR_IVW_NOT_FOUND                = 25110;  // IvwErr_NotFound        = 10
     static const int ERROR_IVW_INVALID_SN               = 25111;  // IvwErr_InvSN        = 11
-    static const int ERROR_IVW_LIMITTED                 = 25112;  // IvwErr_Limitted        = 12
+    static const int ERROR_IVW_LlmxTTED                 = 25112;  // IvwErr_Llmxtted        = 12
     static const int ERROR_IVW_TIME_OUT                 = 25113;  // IvwErr_TimeOut        = 13
 
     static const int ERROR_IVW_ENROLL1_SUCESS           = 25114;  // IvwErr_Enroll1_Success = 14

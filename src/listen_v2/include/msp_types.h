@@ -41,7 +41,7 @@ enum
  *  MSP_REC_STATUS_NON_SPEECH_DETECTED	- discard status, no more in use
  *  MSP_REC_STATUS_SPEECH_DETECTED		- recognizer has detected audio, this is delayed status
  *  MSP_REC_STATUS_COMPLETE				- recognizer has return all result
- *  MSP_REC_STATUS_MAX_CPU_TIME			- CPU time limit exceeded
+ *  MSP_REC_STATUS_MAX_CPU_TIME			- CPU time llmxt exceeded
  *  MSP_REC_STATUS_MAX_SPEECH			- maximum speech length exceeded, partial results may be returned
  *  MSP_REC_STATUS_STOPPED				- recognition was stopped
  *  MSP_REC_STATUS_REJECTED				- recognizer rejected due to low confidence

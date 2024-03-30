@@ -6,15 +6,17 @@ import time
 import cv2
 import os
 from face_detection.xml_read import XmlData
-from face_detection.face_dlib import face_db
+from face_detection.face_dlib2 import face_db
 
 
 class LookNode(Node):
     def __init__(self):
         super().__init__('face_detection')   
-        self.face_db = face_db('/home/imi/head_ws/src/face_detection/face_detection/shape_predictor_68_face_landmarks.dat')
+        self.face_db = face_db('/home/lmx/head_ws/src/face_detection/face_detection/shape_predictor_68_face_landmarks.dat')
 
-        self.cap = cv2.VideoCapture(0) #设备号为0
+        self.cap = cv2.VideoCapture(0, cv2.CAP_V4L2) #设备号为0
+        
+
         self.cap.set(cv2.CAP_PROP_FOURCC, cv2.VideoWriter_fourcc('M','J','P','G'))
         self.cap.set(cv2.CAP_PROP_FRAME_WIDTH, 480)
         self.cap.set(cv2.CAP_PROP_FRAME_HEIGHT, 480)
@@ -42,7 +44,9 @@ class LookNode(Node):
         self.pub = self.create_publisher(Face, 'face_state', 10)
         self.get_logger().info('LookNode initialized successfully......')
 
-    
+        #左右眼上一次是否眨眼 True表示上一轮闭上眼睛了，下一轮一定得睁开了
+        self.left_blink = False
+        self.right_blink = False
 
     def copy_action_callback(self, msg):
         if msg.data == 3:
@@ -98,7 +102,8 @@ class LookNode(Node):
         
         self.publish_cnt = self.publish_cnt + 1
 
-        print("msg : ", msg)
+        if msg.left_blink != 91 or msg.right_blink != 91 or msg.left_eyebrow != 90 or msg.right_eyebrow != 90 or msg.mouth != 65:
+            print("msg : ", msg)
         self.pub.publish(msg)
 
     def initial_reset(self):
@@ -156,19 +161,19 @@ class LookNode(Node):
                     print(self.time)
                     self.time += 1            
                     print('右眼闭眼了')
-                if motion['percentage_eyebrow'] > 0.4:
+                if motion['percentage_eyebrow'] > 0:
                     print(self.time)
                     self.time += 1            
                     print('向上眉毛动了',motion['percentage_eyebrow'])
-                elif motion['percentage_eyebrow'] < -0.4:
+                elif motion['percentage_eyebrow'] < 0:
                     print(self.time)
                     self.time += 1            
                     print('向下眉毛动了',motion['percentage_eyebrow'])
-                if motion['percentage_mouth'] > 0.2 :
+                if motion['percentage_mouth'] > 0 :
                     print(self.time)
                     self.time += 1            
                     print('嘴巴向下动了')
-                elif motion['percentage_mouth'] < -0.2:
+                elif motion['percentage_mouth'] < 0:
                     print(self.time)
                     self.time += 1
                     print('嘴巴向上动了')
@@ -180,7 +185,7 @@ class LookNode(Node):
                 blink_right_eye = motion['blink_right_eye']
                 face_point = {
                     'percentage_eyebrow_left' : percentage_eyebrow_left,
-                    'percentage_eyebrow_right' : percentage_eyebrow_right,
+                    'percentage_eyebrow_right' : -percentage_eyebrow_right,
                     'percentage_mouth' : percentage_mouth,
                     'blink_left_eye' : blink_left_eye,
                     'blink_right_eye': blink_right_eye
@@ -193,7 +198,7 @@ class LookNode(Node):
 
                 end_time = time.time()
                 duration = end_time - start_time
-                remaining_time = self.period/1000 - duration
+                remaining_time = 100/1000 - duration
                 if remaining_time > 0:
                     # print(f"程序休眠：{remaining_time} ms")
                     time.sleep(remaining_time)
@@ -244,17 +249,60 @@ class LookNode(Node):
         # if not (mouth_result > 64 and mouth_result < 67):
         #     print("mouth_result : %f" % mouth_result)
 
-        # blink_left_eye = 130 if face_point['blink_left_eye'] else 50
-        # blink_right_eye = 50 if face_point['blink_right_eye'] else 130
+        '''if(blink_left_eye==130):
+            face_point[blink_left_eye]=True
+        else:
+            #face_point[blink_left_eye]=False
+        if(blink_right_eye==130):
+            face_point[blink_right_eye]=True  
+        else:
+            face_point[blink_right_eye]=False
+        if (face_point[blink_left_eye]==True):
+            if(face_point[blink_right_eye]==False):
+                blink_left_eye=130
+                blink_right_eye=90
+            if(face_point[blink_right_eye]==True):
+                blink_left_eye=130
+                blink_right_eye=130
+        if (face_point[blink_right_eye]==True):
+            if(face_point[blink_left_eye]==False):
+                blink_right_eye=130
+                blink_left_eye=90
+            if(face_point[blink_left_eye]==True):
+                blink_left_eye=130
+                blink_right_eye=130
         blink_left_eye = 90
-        blink_right_eye = 90
+        blink_right_eye = 90'''
 
+        #左右眼的最终的电机位置
+        eye_left_result = 91
+        eye_right_result = 91
+        #眨眼的动作判断 如果上一轮闭眼了就得睁眼
+        #上一轮没闭眼的话这一轮就可以判断要不要闭眼了
+        if self.left_blink:
+            self.left_blink = False
+        else:
+            if face_point['blink_left_eye']:
+                self.left_blink = True
+                eye_left_result = 51
+            
+
+        if self.right_blink:
+            self.right_blink = False
+        else:
+            if face_point['blink_right_eye']:
+                self.left_blink = True
+                eye_right_result = 51
+
+        #face_action[0]is_left_eye face_action[5] is right_eye
         face_action = self.face_motor
         face_action[4] = int(eyebrow_left_result)
         face_action[9] = int(eyebrow_right_result)
         face_action[-1] = int(mouth_result)
+        face_action[0] = int(eye_left_result)
+        face_action[5] = int(eye_right_result)
 
-        if face_point['percentage_mouth'] != 0 or face_point['percentage_eyebrow_left'] != 0:
+        '''if face_point['percentage_mouth'] != 0 or face_point['percentage_eyebrow_left'] != 0:
             print("************************************\n")
             print("eyebrow_left_result  : %d " % face_action[4])
             print(face_point['percentage_eyebrow_left'])
@@ -264,8 +312,12 @@ class LookNode(Node):
             
             print("mouth_result         : %d " % face_action[-1])
             print(face_point['percentage_mouth'])
-            print("************************************\n")
+            print("************************************\n")'''
 
+        if face_point['blink_left_eye']:
+            print('左眼眨眼了')
+        if face_point['blink_right_eye']:
+            print('右眼眨眼了')
         return face_action
 
     def test(self):

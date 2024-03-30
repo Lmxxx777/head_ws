@@ -4,7 +4,7 @@
   <name>face_detection</name>
   <version>0.0.0</version>
   <description>TODO: Package description</description>
-  <maintainer email="1014102811@qq.com">imi</maintainer>
+  <maintainer email="1014102811@qq.com">lmx</maintainer>
   <license>TODO: License declaration</license>
   
   <depend>rclpy</depend>

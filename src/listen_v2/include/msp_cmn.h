@@ -6,7 +6,7 @@
  *  of MSP. Developer can include this file in your project to build applications.
  *  For more information, please read the developer guide.
  
- *  Use of this software is subject to certain restrictions and limitations set
+ *  Use of this software is subject to certain restrictions and llmxtations set
  *  forth in a license agreement entered into between iFLYTEK, Co,LTD.
  *  and the licensee of this software.  Please refer to the license
  *  agreement for license use rights and restrictions.

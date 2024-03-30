@@ -58,7 +58,7 @@ bool PlayWAV(std::string wav_file_name){
     std::cout << "bit per sample: " << wav_header.bits_per_sample << std::endl;
     std::cout << "channel nums: " << wav_header.channel_nums << std::endl;
 
-    set_master_volume(99); // 99%
+    set_master_volume(50); // 99%
     // play audio 
     int err;
     // unsigned int i;
