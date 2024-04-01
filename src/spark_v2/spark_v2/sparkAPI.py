@@ -174,16 +174,10 @@ def SparkAPI(appid, api_key, api_secret, Spark_url, domain, question):
 def SparkChat(Input):
     text.clear
     question = checklen(getText("user", Input))
-    answer = ""
     print("星火:", end="")
     SparkAPI(appid, api_key, api_secret, Spark_url, domain, question)
     getText("assistant", answer)
-
-
-    print(type(text))
-    print(text)
-    print(text.replace('\n', '').replace('\r', '').replace(' ', ''))
-
+    # print(answer.replace('\n', '').replace('\r', '').replace(' ', ''))
     return answer
 
 
